@@ -7,12 +7,14 @@ for(let i=0;i<7;i++){
     document.getElementsByTagName("button")[i].addEventListener("click",function handleClick(){
         let buttonInnerHtml = this.innerHTML
         makeSound(buttonInnerHtml);
+        buttonAnimation(buttonInnerHtml);
     });
 }
 
 // Detectar cuando la tecla se presione
 let keyHandler = document.addEventListener("keydown",function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 
 function makeSound(key){
@@ -51,4 +53,11 @@ function makeSound(key){
     }
 }
 
+function buttonAnimation(key){
+    let activeButton = document.querySelector(`.${key}`);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed")
+    },150)
+}
 
